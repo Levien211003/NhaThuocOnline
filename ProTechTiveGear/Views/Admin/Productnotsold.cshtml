@@ -1,0 +1,102 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.Item>
+@{
+	ViewBag.Title = "Productnotsold";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h2 class="text-center">Item</h2>
+		<p>
+			@Html.ActionLink("Create New", "Create")
+		</p>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th width="10%">
+							@Html.DisplayNameFor(model => model.Picture)
+						</th>
+						<th width="8%">Name</th>
+
+
+						<th width="12%">
+							@Html.DisplayNameFor(model => model.SellPrice)
+						</th>
+						<th width="11%">
+							@Html.DisplayNameFor(model => model.DateImport)
+						</th>
+						<th width="10%">
+							@Html.DisplayNameFor(model => model.Quantity)
+						</th>
+
+
+
+						<th>
+							Brand
+						</th>
+						<th>
+							Type
+						</th>
+						@*<th>
+								Status
+							</th>*@
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>
+								<img width="100" height="100" src="~/img/Item/@Html.DisplayFor(modelItem => item.Picture)" />
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Name)
+							</td>
+
+							<td>
+								$ @Html.DisplayFor(modelItem => item.SellPrice)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.DateImport)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Quantity)
+							</td>
+
+
+
+
+							<td>
+								@Html.DisplayFor(modelItem => item.Brand.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.ItemType.TypeName)
+							</td>
+							@*<td>
+								@if (item.Active == true)
+								{
+									<p style="color:#10de34">Active</p>
+								}
+								else {
+									<p style="color:#eb560b">Unactive</p>
+								}
+								</td>*@
+							<td>
+								@Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "far fa-edit btn btn-outline-success" }) |
+
+								@Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
+								@Html.ActionLink(" ", "UnactiveProduct", new { id = item.ID }, new { onclick = "return confirm('Are you sure you wish to delete this article?');", @class = "far fa-trash-alt btn btn-outline-success" })
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,80 @@
+﻿@model ProTechTiveGear.Models.AccountClientEntity
+@{
+	ViewBag.Title = "Newinformation";
+	Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+@{
+
+	ProTechTiveGear.Models.Customer acc = (ProTechTiveGear.Models.Customer)Session["usr"];
+	string username = "";
+	if (Request.Cookies["usr"] != null)
+	{
+		username = Request.Cookies["usr"].Value;
+
+	}
+
+}
+<h2 class="text-center"><font color="#FF000">Thay đổi thông tin</font></h2>
+<hr />
+@using (Html.BeginForm("Newinformation", "Cart", FormMethod.Post, new
+{
+	enctype = "multipart/form-data"
+}))
+{
+	@Html.AntiForgeryToken()
+
+<div class="container" align="center">
+	<span style="color:red">@Html.ValidationSummary(true, "", new { @class = "text-danger" })</span>
+	<div class="col-md-5">
+		<input type="text"
+			   id="userName"
+			   name="userName"
+			   value="@acc.Username"
+			   class="form-control" readonly />
+	</div>
+	<br />
+	<div class="col-md-5">
+		<input type="text"
+			   id="name"
+			   name="name"
+			   value="@acc.Name"
+			   class="form-control" placeholder="name" maxlength="32" required />
+	</div>
+	<br />
+	<div class="col-md-5">
+		<input type="text"
+			   id="address"
+			   name="address"
+			   value="@acc.Address"
+			   class="form-control" placeholder="Adress" maxlength="32" required />
+	</div>
+	<br />
+	<div class="col-md-5">
+		<input type="text"
+			   id="phonenumber"
+			   name="phonenumber"
+			   value="@acc.Phone"
+			   class="form-control" placeholder="phonenumber" maxlength="32" required />
+	
+	</div>
+	<br />
+	<div class="col-md-5">
+		<input type="email"
+			   id="email"
+			   name="email"
+			   value="@acc.EmailAddress"
+			   class="form-control" placeholder="email" maxlength="32" required />
+
+	</div>
+
+
+	<input type="submit" value=" Lưu " title="Save" class="btn btn-primary" onsubmit="return confirm('Bạn chắc chắn thay đổi mật khẩu?')" />
+
+
+
+</div>
+}
+
+
+

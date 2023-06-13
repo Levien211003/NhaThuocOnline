@@ -1,0 +1,80 @@
+﻿@model ProTechTiveGear.Models.Item
+
+@{
+	ViewBag.Title = "Delete";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center"> <FONT color="#FF000">PRODUCT DETAILS</FONT></h2>
+
+
+<!-------------------------------->
+<table class="table">
+	<tr>
+		<td rowspan="8" width="30%">
+
+			<img src="~/img/Item/@Html.DisplayFor(model => model.Picture)">
+			<br />
+
+		</td>
+		<th> @Html.DisplayNameFor(model => model.Name)</th>
+		<td> @Html.DisplayFor(model => model.Name)</td>
+	</tr>
+	<tr>
+		<th>  @Html.DisplayNameFor(model => model.PurcharsePrice)</th>
+		<td>      @Html.DisplayFor(model => model.PurcharsePrice)</td>
+
+	</tr>
+
+
+	<tr>
+		<th>    @Html.DisplayNameFor(model => model.SellPrice)</th>
+		<td>      @Html.DisplayFor(model => model.SellPrice)</td>
+
+	</tr>
+	<tr>
+		<th>  @Html.DisplayNameFor(model => model.Quantity)</th>
+		<td>      @Html.DisplayFor(model => model.Quantity)</td>
+
+	</tr>
+	<tr>
+		<th>  @Html.DisplayNameFor(model => model.DateImport)</th>
+		<td>      @Html.DisplayFor(model => model.DateImport)</td>
+
+	</tr>
+	<tr>
+		<th>  Brand</th>
+		<td>      @Html.DisplayFor(model => model.Brand.Name)</td>
+
+	</tr>
+	<tr>
+		<th>  Type</th>
+		<td>      @Html.DisplayFor(model => model.ItemType.TypeName)</td>
+
+	</tr>
+	<tr>
+		<th>  Describe</th>
+		<td>      @Html.DisplayFor(model => model.Describe)</td>
+
+	</tr>
+	<tr>
+
+		<td></td>
+
+		<td>
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken()
+
+				<div class="form-actions no-color">
+					<input type="submit" value="Delete" class="btn btn-primary" />
+					@Html.ActionLink("Back to List", "Index")
+				</div>
+			}
+		</td>
+
+		<td></td>
+	</tr>
+</table>
+
+

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.Menu>
+@using ProTechTiveGear.Models;
+@{
+
+	Customer acc = (Customer)Session["usr"];
+	string username = "";
+	if (Request.Cookies["usr"] != null)
+	{
+		username = Request.Cookies["usr"].Value;
+
+	}
+
+}
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav">
+        <li class="dropdown submenu">
+            <a class="dropdown-toggle" href="@Url.Action("Index","AuraStore")" role="button" aria-haspopup="true" aria-expanded="false">Trang chủ</a>
+
+        </li>
+        @foreach (var item in Model)
+        {
+            <li class="dropdown submenu">
+                <a class="dropdown-toggle" href="#" role="button" aria-haspopup="true" aria-expanded="false">@item.Name</a>
+                <ul class="dropdown-menu">
+                    @Html.Action("ItemMenuType", "AuraStore", new { id = item.ID })
+                    @Html.Action("Brandtype", "AuraStore", new { id = item.ID })
+
+                </ul>
+            </li>
+
+
+
+
+
+
+        }
+        <li class="dropdown submenu">
+            <a class="dropdown-toggle" href="@Url.Action("Blog","AuraStore")" role="button" aria-haspopup="true" aria-expanded="false">Tin Tức</a>
+
+        </li>
+        <li class="dropdown submenu">
+            <a class="dropdown-toggle" href="@Url.Action("Contact","AuraStore")" role="button" aria-haspopup="true" aria-expanded="false">Liên Hệ</a>
+
+        </li>
+        <li class="search_icon"><a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a></li>
+        @Html.Action("CartPartial", "Cart")
+        @*@if (Session["usr"] == null)
+        {
+            <li><a href="@Url.Action("Login","Login")">Login/</a></li>
+
+
+            <li><a href="@Url.Action("Register","Login")">Register</a></li>
+
+        }
+        else
+        {
+
+            <li class="dropdown submenu">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span>@acc.Name</span>
+                    <img width="50" height="50" style="border-radius: 50%" src="@Url.Content("~/img/Item/avatar-default-icon.png")">
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="/Client/ProfileClient">Profile</a></li>
+                    <li><a href="~/Account/EditPassword">Change Pasword</a></li>
+                    <li><a href="@Url.Action("SignOut","AuraStore")">Logout</a></li>
+                </ul>
+            </li>
+
+
+        }*@
+
+    </ul>
+
+</div>

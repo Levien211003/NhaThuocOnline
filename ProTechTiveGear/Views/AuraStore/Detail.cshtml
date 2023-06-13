@@ -1,0 +1,51 @@
+﻿
+@{
+	ViewBag.Title = "Detail";
+	Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+
+
+<section class="product_details_area p_100">
+	<div class="container">
+		<div class="row product_d_price">
+			<div class="col-lg-6">
+			
+					<img class="resize-image-detail" src="~/img/Item/@Model.Picture" alt="">
+			
+
+			</div>
+			<div class="col-lg-6">
+				<div class="product_details_text">
+					<h4>@Model.Name</h4>
+					<p>@Model.ShortTitle</p>
+					<h5>Giá :<span> @Model.SellPrice VND</span></h5>
+					<div class="quantity_box">
+						<label for="quantity">Số lượng :</label>
+						<input type="number" min="1" max="10" value="1" id="quantity">
+					</div>
+					@if (Model.Quantity == 0) {<a class="pink_more disabled">Add to Cart</a> }
+					else {<a class="pink_more" href="@Url.Action("AddtoCart","Cart",new {@id=@Model.ID,@strURL=Request.Url.ToString() })" style="background-color:brown">Thêm vào giỏ</a> }
+					
+				</div>
+			</div>
+		</div>
+		<div class="product_tab_area">
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Mô tả</a>
+					
+				</div>
+			</nav>
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+					<p>@Html.Raw(@Model.Describe)</p> 
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</section>
+
+@Html.Action("Relatedproducts", "AuraStore", new { id = @Model.BrandID})

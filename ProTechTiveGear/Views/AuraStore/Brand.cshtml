@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.HelmetsEntity>
+
+@{
+	ViewBag.Title = "Helmets";
+	Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+
+
+<section class="product_area p_100">
+	<div class="container">
+		<div class="row product_inner_row">
+			<div class="col-lg-9">
+				<div class="row m0 product_task_bar">
+					<div class="product_task_inner">
+						
+					</div>
+				</div>
+				<div class="row product_item_inner">
+
+
+					@foreach (var item in Model)
+					{
+
+						<div class="col-lg-4 col-md-4 col-6">
+							<div class="cake_feature_item">
+								<a href="@Url.Action("DetailProduct","AuraStore",new { id=item.ID})">
+									<div class="cake_img">
+
+										<img class="resize-image" src="~/img/Item/@Html.DisplayFor(modelItem => item.Picture)" alt="">
+									</div>
+								</a>
+								<div class="cake_text">
+									<h4>@Html.DisplayFor(modelItem => item.Sellprice)</h4>
+									<h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+									<a class="pest_btn" href="#">Thêm vào giỏ</a>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+				
+			</div>
+			<div class="col-lg-3">
+				<div class="product_left_sidebar">
+					<aside class="left_sidebar search_widget">
+						
+					</aside>
+                    <aside class="left_sidebar p_catgories_widget">
+                        <div class="p_w_title">
+                            <h3>Danh mục sản phẩm</h3>
+                        </div>
+                        <ul class="list_style">
+                            <li><a href="@Url.Action("Helmets","AuraStore")">Jean</a></li>
+                            <li><a href="@Url.Action("RiddingGear","AuraStore")">Khoác</a></li>
+                            <li><a href="@Url.Action("Accsesories","AuraStore")">Sơ Mi</a></li>
+                            <li><a href="@Url.Action("Brand","AuraStore")">Thun</a></li>
+
+                        </ul>
+                    </aside>
+			
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+s

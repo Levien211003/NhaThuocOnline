@@ -1,0 +1,139 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+@model IEnumerable<ProTechTiveGear.Models.Item>
+
+
+
+
+
+<section class="welcome_bakery_area cake_feature_main p_100">
+	<div class="container">
+		<div class="main_title">
+			<h2>Sản phẩm </h2>
+
+		</div>
+		@*@using (Html.BeginForm("Index", "AuraStore", FormMethod.Get))
+		{
+
+			<b>
+				@Html.TextBox("search")
+				<input type="submit" value="Search" />
+			</b>
+		}*@
+	
+		<div class="cake_feature_row row">
+			@foreach (var item in Model)
+			{
+			
+				<div class="col-lg-3 col-md-4 col-6">
+
+					<div class="cake_feature_item">
+						<a href="@Url.Action("Detail","AuraStore",new { id=item.ID})">
+							<div class="cake_img">
+
+								<img class="resize-image" src="~/img/Item/@item.Picture" alt="@item.Name">
+
+							</div>
+						</a>
+						<div class="cake_text" style="background-color: aquamarine">
+							<h4>@item.SellPrice</h4>
+							<h3>@item.Name</h3>
+							@if (item.Quantity == 0)
+							{
+								<p style="color:red">Out of Stock</p>
+							}
+							@if (item.Quantity == 0) {<a class="pest_btn disabled" >Thêm vào giỏ</a> }
+							else { <a class="pest_btn" href="@Url.Action("AddtoCart","Cart",new {@id=item.ID,@strURL=Request.Url.ToString() })" style="background-color:brown">Thêm vào giỏ</a>}
+
+
+							
+						</div>
+					</div>
+
+				</div>
+
+			}
+
+		</div>
+
+	</div>
+</section>
+<section class="new_arivals_area p_100" style="background-color:#f6f6f6">
+	<div class="container">
+		<div class="single_pest_title">
+			<h2>Sản phẩm mới</h2>
+		</div>
+
+		
+		<div class="row arivals_inner">
+			<div class="col-lg-6 col-sm-7">
+				<div class="arivals_chocolate">
+					<div class="arivals_pic">
+						<img class="img-fluid resize-new" src="https://tudienbenhhoc.com/wp-content/uploads/2018/08/5_636108427103272440_HasThumb.png" alt="">
+						<div class="price_text">
+							<h5>800,000</h5>
+						</div>
+					</div>
+				
+					<div class="arivals_text">
+						<h4>Hoạt huyết <span>Nhất Nhất</span></h4>
+						<a href="#"></a>
+					</div>
+				</div>
+			</div>
+			@Html.Action("Newdproducts", "AuraStore")
+		</div>
+	</div>
+</section>
+
+<!--================End New Arivals Area =================-->
+<!--================Latest News Area =================-->
+@*<section class="latest_news_area gray_bg p_100">
+	<div class="container">
+		<div class="main_title">
+			<h2>Latest Blog</h2>
+			<h5>an turn into your instructor your helper, your </h5>
+		</div>
+		<div class="row latest_news_inner">
+			<div class="col-lg-4 col-md-6">
+				<div class="l_news_image">
+					<div class="l_news_img">
+						<img class="img-fluid resize-imageblog" src="img/BannerImage/Suilt.jpg" alt="">
+					</div>
+					<div class="l_news_hover">
+						<a href="#"><h5>Oct 15, 2016</h5></a>
+						<a href="#"><h4>Nanotechnology immersion along the information</h4></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="l_news_item">
+					<div class="l_news_img">
+						<img class="img-fluid resize-imageblogdetail" src="img/BannerImage/Suilt.jpg" alt="">
+					</div>
+					<div class="l_news_text">
+						<a href="#"><h5>Oct 15, 2016</h5></a>
+						<a href="#"><h4>Nanotechnology immersion along the information</h4></a>
+						<p>Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion ....</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="l_news_item">
+					<div class="l_news_img">
+						<img class="img-fluid" src="img/blog/latest-news/l-news-3.jpg" alt="">
+					</div>
+					<div class="l_news_text">
+						<a href="#"><h5>Oct 15, 2016</h5></a>
+						<a href="#"><h4>Nanotechnology immersion along the information</h4></a>
+						<p>Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. Lorem ipsum dolor sit ametion ....</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>*@

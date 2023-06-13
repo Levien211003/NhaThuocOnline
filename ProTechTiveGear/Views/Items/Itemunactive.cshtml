@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.Item>
+@{
+	ViewBag.Title = "Itemunactive";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h2 class="text-center">Item</h2>
+		
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+                    <tr>
+                        <th width="10%">
+                            Ảnh
+                        </th>
+                        <th width="8%">Tên</th>
+
+
+                        <th width="12%">
+                            Giá Bán
+                        </th>
+                        <th width="11%">
+                            Ngày Nhập
+                        </th>
+                        <th width="10%">
+                            Số Lượng
+                        </th>
+                        <th width="10%">
+                            Xuất xứ
+                        </th>
+
+
+
+                        <th>
+                            Loại
+                        </th>
+                        <th>
+                            Trạng thái
+                        </th>
+                        @*<th>
+            Status
+        </th>*@
+                        <th></th>
+                    </tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>
+								<img width="100" height="100" src="~/img/Item/@Html.DisplayFor(modelItem => item.Picture)" />
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Name)
+							</td>
+
+							<td>
+								$ @Html.DisplayFor(modelItem => item.SellPrice)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.DateImport)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Quantity)
+							</td>
+
+
+							<td>
+								@Html.DisplayFor(modelItem => item.ShortTitle)
+							</td>
+
+							<td>
+								@Html.DisplayFor(modelItem => item.Brand.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.ItemType.TypeName)
+							</td>
+							<td>
+								@if (item.Active == true)
+								{
+									<p style="color:#10de34">Active</p>
+								}
+								else
+								{
+									<p style="color:#eb560b">Unactive</p>
+								}
+							</td>
+							<td>
+								@Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "	far fa-edit btn btn-outline-success" }) |
+								@Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
+								@*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+								@Html.ActionLink("Active", "Active", new { id = item.ID }, new { onclick = "return confirm('Are you sure you wish to delete this article?');", @class = "btn btn-success" })
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+

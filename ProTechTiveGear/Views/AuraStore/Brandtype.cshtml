@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.Brand>
+
+@foreach (var item in Model)
+{
+	<li><a href="#"></a></li>
+
+	<li><a href="@Url.Action("BrandbyType","AuraStore",new { id=item.ID})">@item.Name</a></li>
+
+}

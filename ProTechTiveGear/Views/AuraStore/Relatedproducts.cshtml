@@ -1,0 +1,37 @@
+﻿
+@model IEnumerable<ProTechTiveGear.Models.Item>
+			
+				<section class="similar_product_area p_100">
+					<div class="container">
+
+						<div class="main_title">
+							<h2>Sản phẩm tương tự</h2>
+						</div>
+						
+						<div class="row similar_product_inner">
+							@foreach (var item in Model)
+							{
+								<div class="col-lg-3 col-md-4 col-6">
+									<div class="cake_feature_item">
+										<a href="@Url.Action("Detail","AuraStore",new { id=item.ID})">
+											<div class="cake_img">
+												<img class="resize-image" src="~/img/Item/@item.Picture" alt="">
+
+											</div>
+											</a>
+											<div class="cake_text">
+                                                <h4>@item.SellPrice</h4>
+												<h3>@item.Name</h3>
+												<a class="pest_btn" href="@Url.Action("AddtoCart","Cart",new {@id=item.ID,@strURL=Request.Url.ToString() })" style="background-color:brown">Thêm vào giỏ</a>
+											</div>
+									</div>
+								</div>
+							}
+						</div>
+
+					
+					</div>
+				</section>
+				<!--================End Similar Product Area =================-->
+				<!--================Newsletter Area =================-->
+				

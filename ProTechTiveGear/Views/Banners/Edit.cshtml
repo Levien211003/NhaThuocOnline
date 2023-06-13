@@ -1,0 +1,83 @@
+﻿@model ProTechTiveGear.Models.Banner
+
+@{
+	ViewBag.Title = "Edit";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="form-horizontal">
+		<h4>Banner</h4>
+		<hr />
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		@Html.HiddenFor(model => model.ID)
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control", @id = "picture", @name = "picture" } } )
+				<input type="button" id="btnUpload" value="..." class="btn btn-success" />
+				<input type="file" id="fileUpload" accept="image/*" name="fileUpload" style="display:none" ; />
+				@Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+				<img id="pictureUpload" width="100" src="" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Save" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+}
+
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>
+@section upload
+{
+	<script>
+		$(function () {
+			// đăng kí sự kiện click của nút btnUpload
+			$('#btnUpload').click(function () {
+				$('#fileUpload').trigger('click');
+			});
+			//Bat sự kiện change data cua fileUpload
+			$('#fileUpload').change(function () {
+				// kiểm tra trình duyệt có hỗ trợ Form data object hay ko
+				if (window.FormData !== undefined) {
+					//lấy dữ liệu trên fileUpload
+					var fileUpload = $('#fileUpload').get(0);
+					var files = fileUpload.files;
+					//tạo đối tượng formdata
+					var formData = new FormData();
+					//dđưa dữ liệu vào form
+					formData.append('file', files[0]);
+					$.ajax({
+						type: 'POST',
+						url: '/Image/ProcessUpload',  // đường dẫn upload
+						contentType: false, // khoong có header
+						processData: false, // không xử lí dữ liệu
+						data: formData,
+						success: function (urlImage) {
+							//hiện hình
+
+							// $('#pictureUpload').attr('src', urlImage);
+							$('#picture').val(urlImage);
+							document.getElementById("pictureUpload").src = "/img/Item/" + urlImage;
+						},
+						error: function (err) {
+							aler('Error: ' + err.statusText);
+						}
+					});
+				}
+			});
+		});
+	</script>
+
+}

@@ -1,0 +1,35 @@
+﻿
+@model IEnumerable<ProTechTiveGear.Models.Item>
+
+
+
+				<div class="col-lg-6">
+					<div class="arivals_slider owl-carousel">
+
+						@foreach (var item in Model)
+						{
+							<div class="item">
+								<div class="cake_feature_item">
+									<a href="@Url.Action("Detail","AuraStore",new { id=item.ID})">
+										<div class="cake_img">
+											<img class="resize-Productnew" src="~/img/Item/@item.Picture" alt="">
+										</div>
+										</a>
+										<div class="cake_text" style="background-color:aquamarine">
+											<h4>@item.SellPrice </h4>
+											<h3>@item.Name</h3>
+											<a class="pest_btn" href="@Url.Action("AddtoCart","Cart",new {@id=item.ID,@strURL=Request.Url.ToString() })" style="background-color:brown">Thêm vào giỏ</a>
+										</div>
+								</div>
+							</div>
+
+						}
+
+					</div>
+				</div>
+			
+
+
+
+
+

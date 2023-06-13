@@ -1,0 +1,64 @@
+﻿
+@{
+	ViewBag.Title = "RegisterAdmin";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Login", FormMethod.Post, new
+{
+	enctype = "multipart/form-data"
+}))
+{
+	@Html.AntiForgeryToken()
+	<div class="container" align="center">
+		<br />
+		<div class="col-md-5">
+			<input type="text"
+				   id="Name"
+				   name="Name"
+				   class="form-control" placeholder="Your Name" required />
+		</div>
+		<br />
+		<div class="col-md-5">
+			<input type="text"
+				   id="Username"
+				   name="Username"
+				   class="form-control" placeholder="Username" required />
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+		</div>
+		<br />
+		<div class="col-md-5">
+			<input type="password"
+				   id="Password"
+				   name="Password"
+				   class="form-control" placeholder="Password" required />
+		</div>
+		<br />
+		<div class="col-md-5">
+			<input type="password"
+				   id="ConfirmPassword"
+				   name="ConfirmPassword"
+				   class="form-control" placeholder="Comfirm Password" required />
+		</div>
+		<span style="color:red">@ViewBag.Confirm</span>
+
+
+		
+
+		
+
+		<br />
+
+		<br />
+
+		<input type="submit" value="  Register " title="Register" class="btn btn-primary" />
+
+
+
+	</div>
+}
+
+<div>
+	@Html.ActionLink("Login", "Account")
+</div>

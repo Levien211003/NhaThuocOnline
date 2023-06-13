@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.Blog>
+
+
+
+<aside class="r_widget recent_widget">
+	<div class="r_title">
+		<h3>Recent News</h3>
+	</div>
+	<div class="recent_w_inner">
+		@foreach (var item in Model)
+		{
+
+			<div class="media">
+				<div class="d-flex">
+					<img width="70" height="62" src="~/img/Item/@item.Picture" alt="">
+				</div>
+				<div class="media-body">
+					<a href="#"><h4>@item.Title</h4></a>
+					<a href="#"><p>@item.DateImport</p></a>
+				</div>
+			</div>
+
+		}
+
+	</div>
+</aside>

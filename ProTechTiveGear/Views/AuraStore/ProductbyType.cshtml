@@ -1,0 +1,48 @@
+﻿
+@{
+	ViewBag.Title = "ProductbyType";
+	Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+
+
+@model IEnumerable<ProTechTiveGear.Models.Item>
+
+
+
+<section class="welcome_bakery_area cake_feature_main p_100">
+	<div class="container">
+		<div class="main_title">
+			<h2>Sản phẩm </h2>
+			<h5> Danh sách các sản phẩm</h5>
+		</div>
+
+		<div class="cake_feature_row row">
+			@foreach (var item in Model)
+			{
+
+				<div class="col-lg-3 col-md-4 col-6">
+
+					<div class="cake_feature_item">
+						<a href="@Url.Action("Detail","AuraStore",new { id=item.ID})">
+							<div class="cake_img">
+
+								<img class="resize-image" src="~/img/Item/@item.Picture" alt="@item.Name">
+
+							</div>
+						</a>
+						<div class="cake_text" style="background-color:aquamarine">
+							<h4>@item.SellPrice</h4>
+							<h3>@item.Name</h3>
+							<a class="pest_btn" href="@Url.Action("AddtoCart","Cart",new {@id=item.ID,@strURL=Request.Url.ToString() })" style="background-color:brown">Thêm vào giỏ</a>
+						</div>
+					</div>
+
+				</div>
+
+			}
+
+		</div>
+
+	</div>
+</section>

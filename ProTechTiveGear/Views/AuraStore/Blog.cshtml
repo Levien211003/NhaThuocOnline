@@ -1,0 +1,49 @@
+﻿
+@{
+	ViewBag.Title = "Blog";
+	Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+@model IEnumerable<ProTechTiveGear.Models.Blog>
+
+
+
+<section class="main_blog_area p_100">
+	<div class="container">
+		<div class="row blog_area_inner">
+			<div class="col-lg-9">
+				@foreach (var item in Model)
+				{
+					<div class="main_blog_inner">
+						<div class="blog_item">
+							<div class="blog_img">
+								<img class="img-fluid" width="840" height="360" src="~/img/Item/@item.Picture" alt="">
+							</div>
+							<div class="blog_text">
+								<div class="blog_time">
+									<div class="float-left">
+										<a href="#">@item.DateImport</a>
+									</div>
+									<div class="float-right">
+										<ul class="list_style">
+											<li><a href="#">Đăng bởi:  Admin</a></li>
+											
+										</ul>
+									</div>
+								</div>								
+								<a href="#"><h4>@item.Title</h4></a>
+								<p>@item.ShortTitle</p>
+								
+							</div>
+						</div>
+
+
+					</div>
+				}
+					
+				</div>
+			
+		</div>
+	</div>
+</section>
+<!--================End Blog Main Area =================-->
+<!--================Newsletter Area =================-->

@@ -1,0 +1,56 @@
+﻿@model ProTechTiveGear.Models.Item
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center"> <FONT color="#FF000">CHI TIẾT SẢN PHẨM</FONT></h2>
+
+
+<!-------------------------------->
+<table class="table">
+	<tr>
+		<td rowspan="8" width="30%">
+
+			<img src="~/img/Item/@Html.DisplayFor(model => model.Picture)">
+			<br />
+
+		</td>
+		<th> Tên</th>
+		<td> @Html.DisplayFor(model => model.Name)</td>
+	</tr>
+	<tr>
+		<th>  Giá Bán</th>
+		<td>      @Html.DisplayFor(model => model.PurcharsePrice)</td>
+
+	</tr>
+
+
+	<tr>
+		<th>   Giá Mua</th>
+		<td>      @Html.DisplayFor(model => model.SellPrice)</td>
+
+	</tr>
+	<tr>
+		<th>  Số Lượng</th>
+		<td>      @Html.DisplayFor(model => model.Quantity)</td>
+
+	</tr>
+	<tr>
+		<th>  Xuất Xứ</th>
+		<td>      @Html.DisplayFor(model => model.Brand.Name)</td>
+
+	</tr>
+	<tr>
+		<th>  Loại</th>
+		<td>      @Html.DisplayFor(model => model.ItemType.TypeName)</td>
+
+	</tr>
+	<tr>
+
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+<p>@Html.ActionLink("Quay lại", "Index")</p>

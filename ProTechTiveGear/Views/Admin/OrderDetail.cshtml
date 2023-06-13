@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.OrderDetailEntity>
+
+@{
+	ViewBag.Title = "Comfirm";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h2 class="text-center">Chi Tiết Đơn Hàng</h2>
+
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th>
+							Số lượng
+						</th>
+						@*<th>
+								@Html.DisplayNameFor(model => model.ItemId)
+							</th>*@
+						<th>
+							Mã Đơn
+						</th>
+						<th>
+							Tổng Giá
+						</th>
+						<th>
+							Sản Phẩm
+						</th>
+						<th>
+							Ảnh
+						</th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Quantity)
+							</td>
+
+							<td>
+								@Html.DisplayFor(modelItem => item.OrderID)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Totalprice)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Item.Name)
+							</td>
+							<td>
+								<img width="100" height="100" src="~/img/Item/@Html.DisplayFor(modelItem => item.Item.Picture)" />
+							</td>
+						</tr>
+					}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,31 @@
+﻿@*@using (Html.BeginForm("Index", "AuraStore"))
+	{
+
+
+		<input type="text" name="txtname"/>
+			<input type="submit" value="Search" />
+
+	}*@
+
+
+	@*<form class="form-group">
+		@Html.TextBox("search")
+		<input type="submit" value="Search" />
+	</form>*@
+
+	<div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
+		<div class="search_box_inner">
+			<h3>Tìm kiếm</h3>
+			@using (Html.BeginForm("Index", "AuraStore", FormMethod.Get))
+			{
+				<div class="input-group">
+					@*<input type="text" class="form-control" placeholder="Search for..." name="search">*@
+					@Html.TextBox("search", null, new { @class = "form-control", @placeholder = "Nhập từ khóa...." })
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit"><i class="icon icon-Search"></i></button>
+						@*<input type="submit" class="btn btn-default" />*@
+					</span>
+				</div>
+			}
+		</div>
+	</div>

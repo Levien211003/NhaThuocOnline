@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.OrderEntity>
+
+@{
+	ViewBag.Title = "ListOrder";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h2 class="text-center">Đơn Hàng</h2>
+
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th>
+							Ngày Đặt Hàng
+						</th>
+						<th>
+							Ngày Giao Hàng
+						</th>
+						<th>
+							Tổng Giá
+						</th>
+						<th>
+							Trạng Thái
+						</th>
+
+						<th>
+							Khách Hàng
+						</th>
+						<th>
+							Địa Chỉ
+						</th>
+						<th>
+							Email
+						</th>
+						<th>
+							Số Điện Thoại
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Orderdate)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Deliverydate)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Totalprice)
+						</td>
+
+						<td>
+							@if (item.Status == true)
+							{
+								<p>Đã xử lý</p>
+							}
+							else
+							{
+								<p>Chưa xử lý</p>
+							}
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Customer.Name)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Customer.Address)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Customer.EmailAddress)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Customer.Phone)
+						</td>
+						<td>
+
+							@Html.ActionLink("Chi tiết", "OrderDetail", new { id = item.ID })
+							
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProTechTiveGearModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="About">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="OpenningTime" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="OpenningDay" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Messages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Passwords" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateImport" Type="DateTime" Precision="3" />
+    <Property Name="Describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShortTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MenuID" Type="Int64" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK__Brand__MenuID__1B0907CE" FromRole="Brand" ToRole="Menu" />
+    <NavigationProperty Name="Items" Relationship="Self.FK__Item__BrandID__1FCDBCEB" FromRole="Brand" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Messages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Passwords" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.FK__Feedback__Custom__32E0915F" FromRole="Customer" ToRole="Feedback" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__CustomerI__239E4DCF" FromRole="Customer" ToRole="Order" />
+    <NavigationProperty Name="ReplyFeedbacks" Relationship="Self.FK__ReplyFeed__Custo__36B12243" FromRole="Customer" ToRole="ReplyFeedback" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerID" Type="Int64" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Feedback__Custom__32E0915F" FromRole="Feedback" ToRole="Customer" />
+    <NavigationProperty Name="ReplyFeedbacks" Relationship="Self.FK__ReplyFeed__FeedB__35BCFE0A" FromRole="Feedback" ToRole="ReplyFeedback" />
+  </EntityType>
+  <EntityType Name="Footer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FooterDetails" Relationship="Self.FK__FooterDet__Foote__403A8C7D" FromRole="Footer" ToRole="FooterDetail" />
+  </EntityType>
+  <EntityType Name="FooterDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="FooterID" Type="Int32" />
+    <NavigationProperty Name="Footer" Relationship="Self.FK__FooterDet__Foote__403A8C7D" FromRole="FooterDetail" ToRole="Footer" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PurcharsePrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SellPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="DateImport" Type="DateTime" Precision="3" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="TypeID" Type="Int64" />
+    <Property Name="BrandID" Type="Int64" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Brand" Relationship="Self.FK__Item__BrandID__1FCDBCEB" FromRole="Item" ToRole="Brand" />
+    <NavigationProperty Name="ItemType" Relationship="Self.FK__Item__TypeID__1ED998B2" FromRole="Item" ToRole="ItemType" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__ItemI__267ABA7A" FromRole="Item" ToRole="OrderDetail" />
+    <Property Name="ShortTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ItemType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MenuID" Type="Int64" />
+    <NavigationProperty Name="Items" Relationship="Self.FK__Item__TypeID__1ED998B2" FromRole="ItemType" ToRole="Item" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK__ItemType__MenuID__182C9B23" FromRole="ItemType" ToRole="Menu" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Brands" Relationship="Self.FK__Brand__MenuID__1B0907CE" FromRole="Menu" ToRole="Brand" />
+    <NavigationProperty Name="ItemTypes" Relationship="Self.FK__ItemType__MenuID__182C9B23" FromRole="Menu" ToRole="ItemType" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Orderdate" Type="DateTime" Precision="3" />
+    <Property Name="Deliverydate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="CustomerID" Type="Int64" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Order__CustomerI__239E4DCF" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__276EDEB3" FromRole="Order" ToRole="OrderDetail" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK__Payment__OrderID__2A4B4B5E" FromRole="Order" ToRole="Payment" />
+    <Property Name="Deliverystatus" Type="Boolean" />
+    <Property Name="Totalprice" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="ItemId" Type="Int64" />
+    <Property Name="OrderID" Type="Int64" />
+    <Property Name="Totalprice" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Item" Relationship="Self.FK__OrderDeta__ItemI__267ABA7A" FromRole="OrderDetail" ToRole="Item" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__276EDEB3" FromRole="OrderDetail" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Payprices" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="OrderID" Type="Int64" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Payment__OrderID__2A4B4B5E" FromRole="Payment" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="ReplyFeedback">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FeedBackID" Type="Int64" />
+    <Property Name="CustomerID" Type="Int64" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__ReplyFeed__Custo__36B12243" FromRole="ReplyFeedback" ToRole="Customer" />
+    <NavigationProperty Name="Feedback" Relationship="Self.FK__ReplyFeed__FeedB__35BCFE0A" FromRole="ReplyFeedback" ToRole="Feedback" />
+  </EntityType>
+  <Association Name="FK__Brand__MenuID__1B0907CE">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Brand" Type="Self.Brand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Brand">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Item__BrandID__1FCDBCEB">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="BrandID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Feedback__Custom__32E0915F">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__CustomerI__239E4DCF">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReplyFeed__Custo__36B12243">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="ReplyFeedback" Type="Self.ReplyFeedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReplyFeedback">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReplyFeed__FeedB__35BCFE0A">
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="0..1" />
+    <End Role="ReplyFeedback" Type="Self.ReplyFeedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feedback">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ReplyFeedback">
+        <PropertyRef Name="FeedBackID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FooterDet__Foote__403A8C7D">
+    <End Role="Footer" Type="Self.Footer" Multiplicity="0..1" />
+    <End Role="FooterDetail" Type="Self.FooterDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Footer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FooterDetail">
+        <PropertyRef Name="FooterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Item__TypeID__1ED998B2">
+    <End Role="ItemType" Type="Self.ItemType" Multiplicity="0..1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__ItemI__267ABA7A">
+    <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ItemType__MenuID__182C9B23">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="ItemType" Type="Self.ItemType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ItemType">
+        <PropertyRef Name="MenuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Order__276EDEB3">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment__OrderID__2A4B4B5E">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProTechTiveGearEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Abouts" EntityType="Self.About" />
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Banners" EntityType="Self.Banner" />
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="Brands" EntityType="Self.Brand" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+    <EntitySet Name="Footers" EntityType="Self.Footer" />
+    <EntitySet Name="FooterDetails" EntityType="Self.FooterDetail" />
+    <EntitySet Name="Items" EntityType="Self.Item" />
+    <EntitySet Name="ItemTypes" EntityType="Self.ItemType" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="ReplyFeedbacks" EntityType="Self.ReplyFeedback" />
+    <AssociationSet Name="FK__Brand__MenuID__1B0907CE" Association="Self.FK__Brand__MenuID__1B0907CE">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Brand" EntitySet="Brands" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Item__BrandID__1FCDBCEB" Association="Self.FK__Item__BrandID__1FCDBCEB">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Feedback__Custom__32E0915F" Association="Self.FK__Feedback__Custom__32E0915F">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__CustomerI__239E4DCF" Association="Self.FK__Order__CustomerI__239E4DCF">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReplyFeed__Custo__36B12243" Association="Self.FK__ReplyFeed__Custo__36B12243">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="ReplyFeedback" EntitySet="ReplyFeedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReplyFeed__FeedB__35BCFE0A" Association="Self.FK__ReplyFeed__FeedB__35BCFE0A">
+      <End Role="Feedback" EntitySet="Feedbacks" />
+      <End Role="ReplyFeedback" EntitySet="ReplyFeedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FooterDet__Foote__403A8C7D" Association="Self.FK__FooterDet__Foote__403A8C7D">
+      <End Role="Footer" EntitySet="Footers" />
+      <End Role="FooterDetail" EntitySet="FooterDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Item__TypeID__1ED998B2" Association="Self.FK__Item__TypeID__1ED998B2">
+      <End Role="ItemType" EntitySet="ItemTypes" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__ItemI__267ABA7A" Association="Self.FK__OrderDeta__ItemI__267ABA7A">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ItemType__MenuID__182C9B23" Association="Self.FK__ItemType__MenuID__182C9B23">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="ItemType" EntitySet="ItemTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Order__276EDEB3" Association="Self.FK__OrderDeta__Order__276EDEB3">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment__OrderID__2A4B4B5E" Association="Self.FK__Payment__OrderID__2A4B4B5E">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

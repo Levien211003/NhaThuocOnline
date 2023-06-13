@@ -1,0 +1,35 @@
+﻿@model ProTechTiveGear.Models.Brand
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Xuất Xứ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+          Tên
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Vị Trí
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Menu.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Cập Nhập", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>

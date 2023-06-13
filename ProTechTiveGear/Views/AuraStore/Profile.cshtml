@@ -1,0 +1,59 @@
+﻿
+@{
+	ViewBag.Title = "Profile";
+	Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+@model IEnumerable<ProTechTiveGear.Models.Customer>
+
+
+<h2 class="text-center">Thông tin </h2>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12"></div>
+		@foreach (var item in Model)
+		{
+
+
+			<table class="table">
+				<tr>
+					<td rowspan="8" width="30%">
+
+						<img src="~/img/Item/avatar-default-icon.png">
+						<br />
+
+					</td>
+					<th> Tên</th>
+					<td> @item.Name</td>
+				</tr>
+				<tr>
+					<th>  Địa chỉ</th>
+					<td>     @item.Address</td>
+
+				</tr>
+
+
+				<tr>
+					<th>    Số điện thoại</th>
+					<td>      @item.Phone</td>
+
+				</tr>
+
+
+				<tr>
+
+					<td></td>
+
+					<td>
+						<a href="@Url.Action("Changepassword","Login")" class="btn btn-success"> Đổi mật khẩu</a>
+					
+					</td>
+
+					<td></td>
+				</tr>
+			</table>
+		}
+		</div>
+	</div>
+

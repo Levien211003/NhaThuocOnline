@@ -1,0 +1,154 @@
+﻿@using ProTechTiveGear.Models
+@model List<CartEntity>
+@{
+	ViewBag.Title = "Cart";
+	Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+
+
+
+
+
+
+
+	
+
+	<script type="text/javascript">
+		//function total1(){
+
+	//		d = document.getElementById("sl").value;
+	//	e= document.getElementById("gia").innerHTML;
+
+	//	f=eval(d)*eval(e);
+	//	document.getElementById("total").innerHTML="$"+f;
+	//			}
+		function cong()
+	{
+		var t = document.getElementById("quantity").value;
+		document.getElementById("quantity").value = parseInt(t) + 1;
+	}
+	function tru()
+	{
+		var t = document.getElementById("quantity").value;
+		if(parseInt(t)>1){
+			document.getElementById("quantity").value = parseInt(t) - 1;
+		}
+	}
+		
+</script>
+
+
+
+
+
+<section class="cart_table_area p_100">
+	<div class="container">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col" style="background-color:#49e4fa;color:white">Ảnh</th>
+						<th scope="col" style="background-color:#49e4fa;color:white">Sản phẩm</th>
+						<th scope="col" style="background-color:#49e4fa;color:white">Giá</th>
+						<th scope="col" style="background-color:#49e4fa;color:white">Số lượng</th>
+						<th scope="col" style="background-color:#49e4fa;color:white">Tổng tiền</th>
+						<th scope="col" style="background-color:#49e4fa"></th>
+						<th scope="col" style="background-color:#49e4fa"></th>
+						<th scope="col" style="background-color:#49e4fa"></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+					<tr>
+						<td>
+							<img class="resize-image-cart" src="~/img/Item/@item.Picture" alt="">
+
+						</td>
+						@using (Html.BeginForm("EditCart", "Cart", new { @id = item.IdItem }))
+						{
+							<td>@item.Name</td>
+							<td>@String.Format("{0:0,0}", item.Prices)</td>
+
+
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<input class="cart_quantity_input" type="number" name="txtSoluong" min="1" max="10" value="@item.Quantity">
+								</div>
+							</td>
+							@*<td>
+				<div class="form-group--number">
+					<input type="submit" onclick="tru()" class="minus"><span>-</span>
+					<button type="button" onclick="tru()" class="minus"><span>-</span></button>
+					<input id="quantity" min="1" max="100" class="form-control" type="text" name="txtSoLuong" value="@item.Quantity">
+					<button type="button" onclick="cong()" class="plus"><span>+</span></button>
+					<input type="submit" onclick="cong()" class="plus"><span>-</span>
+				</div>
+			</td>*@
+
+
+							<td>@String.Format("{0:0,0}", item.TotalPrices)</td>
+							<td><a href="@Url.Action("Detail", "AuraStore", new { id = item.IdItem })">Chi tiết</a></td>
+							<td>@Html.ActionLink("Xóa", "DeLeteCart", new { @id = item.IdItem })</td>
+
+							@*<td><input type="submit" value="Update" /></td>*@
+								
+							<td>	<input type="submit" value="Cập nhập" class="pest_btn"></td>
+							//<td><input type="submit" value="Update" /></td>
+						}
+					</tr>
+
+					}
+					<tr>
+						<td>
+							<form class="form-inline">
+								<div class="form-group">
+									
+								</div>
+								
+							</form>
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>
+							<form class="form-inline">
+							
+								<a class="pest_btn" href="@Url.Action("DeleteAll","Cart")"><span style="color:red">Xóa tất cả</span></a>
+							</form>
+						</td>
+							
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row cart_total_inner">
+			<div class="col-lg-7"></div>
+			<div class="col-lg-5">
+				<div class="cart_total_text">
+					<div class="cart_head"style="background-color:#49e4fa;color:white">
+						Đơn hàng
+					</div>
+					<div class="sub_total">
+						<h5>Số lượng <span>@ViewBag.TotalQuantity</span></h5>
+					</div>
+					<div class="total">
+						<h4>Tổng tiền <span>@String.Format("{0:0,0}", ViewBag.ToTalPrice)</span></h4>
+					</div>
+					<div class="cart_footer">
+						@*<a class="pest_btn">@Html.ActionLink("Order", "Order", "Cart")</a>*@
+						<div class="cart_footer">
+							<a class="pest_btn" href="@Url.Action("Order","Cart")">Xác nhận</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+

@@ -1,0 +1,65 @@
+﻿@model ProTechTiveGear.Models.Blog
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xóa</h2>
+
+
+<div>
+    <h4>Tin Tức</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ảnh
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+
+        <dt>
+            Tiêu Đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+           Ngày Đăng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateImport)
+        </dd>
+
+        <dt>
+           Chi Tiết
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Describe)
+        </dd>
+
+        <dt>
+           Mô Tả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortTitle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,7 @@
+﻿
+@using ProTechTiveGear.Models
+@model List<CartEntity>
+	@*<a href="@Url.Action("Cart","Cart")" style="color:white; font-weight:bold;text-decoration:none">
+		<img src=""/>
+	</a>*@
+	<li class="shop_cart"><a href="@Url.Action("Cart","Cart")"><i class="lnr lnr-cart">Cart(@ViewBag.TotalQuantity)</i></a></li>

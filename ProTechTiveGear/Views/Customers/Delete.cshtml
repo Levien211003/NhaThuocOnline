@@ -1,0 +1,76 @@
+﻿@model ProTechTiveGear.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h3 style="margin-left: 400px; color:brown">Bạn chắc chắn muốn xóa khách hàng?</h3>
+<div style="margin-left:350px;">
+   
+    <hr />
+    <table>
+        <td style="width: 400px;">
+            <dl class="dl-horizontal">
+                <dt>
+                    <h5 style="color:black">Tài khoản</h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Username)
+                </dd>
+
+                <dt>
+                    <h5 style="color:black">Mật khẩu</h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Passwords)
+                </dd>
+
+                <dt>
+                    <h5 style="color:black">Họ và tên</h5>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+            </dl>
+        </td>
+        <td>
+            <dt>
+                <h5 style="color:black">Địa chỉ</h5>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                <h5 style="color:black">Email</h5>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmailAddress)
+            </dd>
+            <dt>
+                <h5 style="color:black">Số điện thoại</h5>
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+        </td>
+    </table>
+    
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="margin-left:200px;margin-bottom:300px;">
+            <input type="submit" value="Xóa" class="btn btn-default" style="color:brown;font-size:115%;" /> |
+            @Html.ActionLink("Trở lại", "Index")
+        </div>
+    }
+</div>

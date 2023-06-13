@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProTechTiveGear.Models.OrderDetailEntity>
+
+
+
+
+<div class="row">
+	<div class="col-md-12">
+
+		<table class="table">
+			<tr>
+				<th>
+					Số lượng
+				</th>
+				@*<th>
+						@Html.DisplayNameFor(model => model.ItemId)
+					</th>*@
+				<th>
+					Mã Đơn
+				</th>
+				<th>
+					Tổng giá
+				</th>
+				<th>
+					Sản phẩm
+				</th>
+				<th>
+					Ảnh
+				</th>
+
+			</tr>
+			@foreach (var item in Model)
+			{
+			<tr>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Quantity)
+				</td>
+				@*<td>
+			@Html.DisplayFor(modelItem => item.ItemId)
+		</td>*@
+				<td>
+					@Html.DisplayFor(modelItem => item.OrderID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Totalprice)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Item.Name)
+				</td>
+				<td>
+				<img class="resize-image-cart" src="~/img/Item/@Html.DisplayFor(modelItem => item.Item.Picture)"/>	
+				</td>
+			</tr>
+			}
+
+		</table>
+
+	</div>
+</div>
